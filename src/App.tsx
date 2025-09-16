@@ -1,6 +1,11 @@
 import "./App.css";
 import { useCounterStore } from "./store";
 
+const logCount = () => {
+  const count = useCounterStore.getState().count;
+  console.log("count", count)
+}
+
 function App() {
   const count = useCounterStore((state) => state.count)
 
