@@ -1,13 +1,20 @@
+import { useEffect } from "react";
 import "./App.css";
 import { useCounterStore } from "./store";
 
+// flexibility do actions inside a function or a component
+
 const logCount = () => {
-  const count = useCounterStore.getState().count;
+  const count = useCounterStore.getState().count; // inside function (outside of component)
   console.log("count", count)
 }
 
+const setCount = () => {
+  useCounterStore.setState({ count: 1 }) // update state (outside of component)
+}
+
 function App() {
-  const count = useCounterStore((state) => state.count)
+  const count = useCounterStore((state) => state.count) // hook inside component
 
   return <OtherComponent count={count} />;
 }
@@ -16,6 +23,11 @@ const OtherComponent = ({ count }: { count: number }) => {
   const increment = useCounterStore((state) => state.increment);
   const incrementAsync = useCounterStore((state) => state.incrementAsync)
   const decrement = useCounterStore((state) => state.decrement);
+
+  useEffect(() => {
+    logCount(); 
+    setCount();
+  }, [])
 
   return (
     <div
