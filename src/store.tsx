@@ -7,6 +7,7 @@ type CounterStore = {
     decrement: () => void;
 }
 
+// group stores by feature
 export const useCounterStore = create<CounterStore>((set) => ({
     count: 0,
     increment: () => {

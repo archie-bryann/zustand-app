@@ -14,6 +14,7 @@ const setCount = () => {
 }
 
 function App() {
+  // be specific like below: `state.count` not `state` destructured to listen to only count
   const count = useCounterStore((state) => state.count) // hook inside component
 
   return <OtherComponent count={count} />;
